@@ -14,8 +14,8 @@ export interface IPhotoProps {
 export const Photo: FC<IPhotoProps> = memo(
   ({ photo }: IPhotoProps) => {
     return (
-      <Grid item>
-        <Card sx={{ maxWidth: 345 }}>
+      <Grid item sx={{width: '100%'}}>
+        <Card>
           <CardMedia sx={{ position: 'relative', width: '100%', height: '140px' }}>
             <Image src={photo.thumbnailUrl} layout='fill' objectFit="cover" objectPosition='center' alt={photo.title} unoptimized />
           </CardMedia>
