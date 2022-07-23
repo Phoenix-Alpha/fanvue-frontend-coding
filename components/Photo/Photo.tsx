@@ -15,11 +15,9 @@ export const Photo: FC<IPhotoProps> = memo(
   ({ photo }: IPhotoProps) => {
     return (
       <Grid item>
-        <Card sx={{ display: 'flex', maxWidth: 345 }}>
-          <CardMedia>
-            <div style={{ position: 'relative', width: '100%', height: '140px' }}>
-              <Image src={photo.thumbnailUrl} layout='fill' objectFit="cover" objectPosition='center' alt={photo.title} />
-            </div>
+        <Card sx={{ maxWidth: 345 }}>
+          <CardMedia sx={{ position: 'relative', width: '100%', height: '140px' }}>
+            <Image src={photo.thumbnailUrl} layout='fill' objectFit="cover" objectPosition='center' alt={photo.title} unoptimized />
           </CardMedia>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
