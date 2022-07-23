@@ -1,26 +1,49 @@
-import type { GetServerSideProps, NextPage } from "next";
-import { getServerSidePropsForVaultPage } from '@/utils'
-import { IPhoto } from "@/types";
+import 'photoswipe/style.css'
 
-import { Grid, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
+import type { GetServerSideProps, NextPage } from 'next'
+import PhotoSwipeLightbox from 'photoswipe/lightbox'
+import { useEffect } from 'react'
+
 import { Photo } from '@/components'
+import { IPhoto } from '@/types'
+import { getServerSidePropsForVaultPage } from '@/utils'
 
 export interface IFeedPageProps {
   photos: IPhoto[]
 }
 
 const Vault: NextPage<IFeedPageProps> = ({ photos }: IFeedPageProps) => {
+  useEffect(() => {
+    let lightbox = new PhotoSwipeLightbox({
+      gallery: '#' + 'vault-gallery',
+      children: 'a',
+      pswpModule: () => import('photoswipe')
+    })
+    lightbox.init()
+
+    return () => {
+      lightbox.destroy()
+      lightbox = null
+    }
+  }, [])
+
   return (
-    <Grid container item flexDirection='column' alignItems='center' xs={12} md={6} marginX='auto' spacing={4} paddingY={10}>
-      <Typography component="h1" variant="h3">
-        Vault
-      </Typography>
-      {photos.map((photo) => <Photo photo={photo} key={photo.id} />)}
+    <Grid
+      container
+      item
+      spacing={2}
+      className="pswp-gallery"
+      id="vault-gallery"
+      padding={10}>
+      {photos.map((photo, index) => (
+        <Photo photo={photo} key={'vault-gallery-' + index} />
+      ))}
     </Grid>
-  );
-};
+  )
+}
 
 export const getServerSideProps: GetServerSideProps = async () =>
   getServerSidePropsForVaultPage()
 
-export default Vault;
+export default Vault

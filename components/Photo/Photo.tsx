@@ -1,34 +1,38 @@
+import { styled } from '@mui/material'
+import Image from 'next/image'
 import { FC, memo } from 'react'
+
 import { IPhoto } from '@/types'
 
-import { Typography, Grid, Card, CardContent, CardMedia, CardActionArea } from '@mui/material'
-
-import Image from 'next/image'
+const PhotoContainer = styled('div')(() => ({
+  width: 345,
+  height: 200,
+  position: 'relative'
+}))
 
 export interface IPhotoProps {
   photo: IPhoto
 }
 
-export const Photo: FC<IPhotoProps> = memo(
-  ({ photo }: IPhotoProps) => {
-    return (
-      <Grid item sx={{maxWidth: 345}}>
-        <Card>
-          <CardActionArea>
-            <CardMedia sx={{ position: 'relative', width: '100%', height: '140px' }}>
-              <Image src={photo.thumbnailUrl} layout='fill' objectFit="cover" objectPosition='center' alt={photo.title} unoptimized />
-            </CardMedia>
-            <CardContent sx={{ flex: 1 }}>
-              <Typography component="h2" variant="h5">
-                {photo.title}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </Grid>
-    )
-  }
-)
+export const Photo: FC<IPhotoProps> = memo(({ photo }: IPhotoProps) => {
+  return (
+    <a
+      href={photo.url}
+      key={`vault-gallery-${photo.title}`}
+      target="_blank"
+      rel="noreferrer">
+      <PhotoContainer>
+        <Image
+          src={photo.thumbnailUrl}
+          alt={photo.title}
+          layout="fill"
+          objectFit="cover"
+          unoptimized
+        />
+      </PhotoContainer>
+    </a>
+  )
+})
 
 Photo.displayName = 'Photo'
 

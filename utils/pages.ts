@@ -1,5 +1,5 @@
-import { IPhoto, IPost } from "@/types"
-import { getPosts, getPhotos } from "@/utils"
+import { IPhoto, IPost } from '@/types'
+import { getPosts, getPhotos } from '@/utils'
 
 export const getServerSidePropsForFeedPage = async (): Promise<{
   props: {
@@ -9,7 +9,7 @@ export const getServerSidePropsForFeedPage = async (): Promise<{
   const response = await getPosts()
   return {
     props: {
-      posts: [ ... response?.data ]
+      posts: [...response?.data]
     }
   }
 }
@@ -22,7 +22,7 @@ export const getServerSidePropsForVaultPage = async (): Promise<{
   const response = await getPhotos()
   return {
     props: {
-      photos: [ ... response?.data ]
+      photos: [...response?.data]
     }
   }
 }
