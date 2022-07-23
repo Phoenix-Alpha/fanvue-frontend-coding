@@ -10,7 +10,7 @@ export interface ICommentProps {
 export const Comment: FC<ICommentProps> = memo(
   ({ comment }: ICommentProps) => {
     return (
-      <Grid item>
+      <Grid item sx={{ width: '100%'}}>
         <Typography component="h3" variant="h6">
           {comment.name} ({comment.email})
         </Typography>

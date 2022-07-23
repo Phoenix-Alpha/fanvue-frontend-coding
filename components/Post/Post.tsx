@@ -1,10 +1,15 @@
 import { FC, memo } from 'react'
 import { IPost } from '@/types'
 
-import { Typography, Grid, Card, Button, CardContent } from '@mui/material'
+import { Typography, Grid, Card, Button, CardContent, styled } from '@mui/material'
 import { usePost } from '@/hooks'
 
 import { Comment } from '@/components'
+
+// Simple exmaple using styled...
+const PostContainer = styled(Grid)(() => ({
+  width: '100%'
+}))
 
 export interface IPostProps {
   post: IPost
@@ -15,7 +20,7 @@ export const Post: FC<IPostProps> = memo(
     const { showComment, comments, handleCommentClick } = usePost(post)
 
     return (
-      <Grid item>
+      <PostContainer item >
         <Card sx={{ display: 'flex' }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
@@ -36,7 +41,7 @@ export const Post: FC<IPostProps> = memo(
             }
           </CardContent>
         </Card>
-      </Grid>
+      </PostContainer>
     )
   }
 )

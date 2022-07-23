@@ -11,7 +11,7 @@ export interface IFeedPageProps {
 
 const Feed: NextPage<IFeedPageProps> = ({ posts }: IFeedPageProps) => {
   return (
-    <Grid container flexDirection='column' alignItems='center' xs={12} md={6} marginX='auto' spacing={4} paddingY={10}>
+    <Grid container item flexDirection='column' alignItems='center' xs={12} md={6} marginX='auto' spacing={4} paddingY={10}>
       <Typography component="h1" variant="h3">
         Posts
       </Typography>
